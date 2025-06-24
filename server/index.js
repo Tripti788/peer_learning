@@ -1,12 +1,10 @@
 require('dotenv').config();
 
-const express = require('express')
+const express = require('express');
 const app = express();
 const cors = require('cors');
 
-const port = process.env.PORT || 3000;
-
-
+// Don't forget correct paths relative to this file
 const authRoutes = require('./Routes/authRoutes');
 const questionRoutes = require('./Routes/questionRoutes');
 const answerRoutes = require('./Routes/answerRoutes');
@@ -14,16 +12,19 @@ const answerRoutes = require('./Routes/answerRoutes');
 app.use(cors());
 app.use(express.json());
 
-app.use('/api/auth',authRoutes);
-app.use('/api/questions',questionRoutes);
-app.use('/api/answers',answerRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/questions', questionRoutes);
+app.use('/api/answers', answerRoutes);
 
-app.get('/', (req, res) => {
-  res.send('Hello World!!')
-})
+
 
 const mongoose = require('mongoose');
 
+// ✅ Correct dynamic PORT
+const port = process.env.PORT || 3000;
+
 mongoose.connect(process.env.MONGO_URI)
-  .then(() => app.listen(port, () => console.log(`Server running on port ${port}`)))
+  .then(() => {
+    app.listen(port, () => console.log(`Server running on port ${port}`));
+  })
   .catch(err => console.error(err));
