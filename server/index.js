@@ -6,10 +6,9 @@ const cors = require('cors');
 const port = 3000
 
 
-
-const authRoutes = require('./routes/authRoutes');
-const questionRoutes = require('./routes/questionRoutes');
-const answerRoutes = require('./routes/answerRoutes');
+const authRoutes = require('./Routes/authRoutes');
+const questionRoutes = require('./Routes/questionRoutes');
+const answerRoutes = require('./Routes/answerRoutes');
 
 app.use(cors());
 app.use(express.json());
