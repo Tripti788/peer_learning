@@ -40,9 +40,10 @@ const QuestionForm = () => {
       });
       navigate("/");
     } catch (error) {
-      console.error("Error in submitting question:", error);
-      alert(message, "Something went wrong!");
-    } finally {
+  console.error("Error in submitting question:", error);
+  alert(error?.response?.data?.message || error.message || "Something went wrong!");
+}
+ finally {
       setSubmitting(false);
     }
   };
