@@ -4,7 +4,7 @@ import logo from '../assets/favicon.jpeg';
 
 const NavBar = () => {
   return (
-    <nav className="navbar navbar-expand-lg shadow-sm bg-white py-3">
+    <nav className="navbar navbar-expand-lg shadow-sm bg-white ">
       <div className="container-fluid px-4">
 
         {/* Logo */}
