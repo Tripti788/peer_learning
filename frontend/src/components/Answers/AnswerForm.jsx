@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import '../../api';
 
 const AnswerForm = ({ questionId, setAnswers }) => {
   const [answerText, setAnswerText] = useState('');
@@ -20,14 +21,14 @@ const AnswerForm = ({ questionId, setAnswers }) => {
       return;
     }
 
-    const res = await axios.post(
-      `http://localhost:3000/api/answers/${questionId}/answers`,
+    const res = await api.post(
+      `/answers/${questionId}/answers`,
       { answerText },
       { headers: { Authorization: `Bearer ${token}` } }
     );
 
     // Update answers after successful submission
-    const updatedAnswers = await axios.get(`http://localhost:3000/api/answers/${questionId}/answers`);
+    const updatedAnswers = await api.get(`/answers/${questionId}/answers`);
     setAnswers(updatedAnswers.data);
     setAnswerText('');
   } catch (err) {
