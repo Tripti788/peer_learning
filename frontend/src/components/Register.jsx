@@ -23,7 +23,7 @@ const Register = () => {
     }
 
     try {
-      await axios.post("http://localhost:3000/api/auth/register", form);
+      await axios.post("https://peer-learning-cyan.vercel.app/api/auth/register", form);
       alert("Registered successfully! You can now login.");
       navigate('/login');
     } catch (error) {

@@ -7,7 +7,7 @@ function QuestionList() {
 
   useEffect(() => {
     // Call backend API to get all questions
-    axios.get('http://localhost:3000/api/questions')
+    axios.get('https://peer-learning-cyan.vercel.app/api/questions')
       .then(res => {
         setQuestions(res.data);
       })
