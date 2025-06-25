@@ -10,7 +10,7 @@ const questionRoutes = require('./Routes/questionRoutes');
 const answerRoutes = require('./Routes/answerRoutes');
 
 app.use(cors({
-  origin: 'https://peer-learning-cyan.vercel.app',
+  origin: 'https://peer-learning-la3n.vercel.app',
   credentials: true
 }));
 

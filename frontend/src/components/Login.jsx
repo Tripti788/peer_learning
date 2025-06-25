@@ -1,22 +1,28 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios  from 'axios';
-
+import api from '../api'; // ✅ Fix 1: Use your configured axios instance (not axios directly)
 
 const Login = () => {
-  const [form,setForm] = useState({email:' ',password:' '});
+  const [form, setForm] = useState({ email: '', password: '' }); // ✅ Fix 2: Remove spaces in initial values
   const navigate = useNavigate();
 
-  const handleChange = e => {
-    setForm({...form,[e.target.name] : e.target.value});
-  }
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await axios.post('http://localhost:3000/api/auth/login', form);
-    localStorage.setItem('token', res.data.token);
-    navigate('/');
-  }
+
+    try {
+      const res = await api.post('/auth/login', form); // ✅ Use configured api instance
+      localStorage.setItem('token', res.data.token);
+      alert('Login successful!');
+      navigate('/');
+    } catch (error) {
+      console.error('Login error:', error);
+      alert(error?.response?.data?.message || 'Login failed');
+    }
+  };
 
   return (
     <div className="container d-flex justify-content-center align-items-center vh-100">
@@ -25,29 +31,30 @@ const Login = () => {
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="email" className="form-label">Email address</label>
-          <input 
-  type="email" 
-  className="form-control" 
-  id="email" 
-  name="email"   // <-- important
-  placeholder="Enter email"
-  value={form.email}
-  onChange={handleChange}
-/>
-
+            <input 
+              type="email" 
+              className="form-control" 
+              id="email" 
+              name="email" 
+              placeholder="Enter email"
+              value={form.email}
+              onChange={handleChange}
+              required
+            />
           </div>
 
           <div className="mb-3">
             <label htmlFor="password" className="form-label">Password</label>
-<input 
-  type="password" 
-  className="form-control" 
-  id="password" 
-  name="password"  // <-- important
-  placeholder="Password"
-  value={form.password}
-  onChange={handleChange}
-/>
+            <input 
+              type="password" 
+              className="form-control" 
+              id="password" 
+              name="password" 
+              placeholder="Password"
+              value={form.password}
+              onChange={handleChange}
+              required
+            />
           </div>
 
           <div className="mb-3 form-check">
@@ -62,7 +69,7 @@ const Login = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
