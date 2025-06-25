@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../../api';
+import api from '../../api';
 
 const AnswerForm = ({ questionId, setAnswers }) => {
   const [answerText, setAnswerText] = useState('');
