@@ -11,7 +11,7 @@ import { Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div style={{ backgroundColor: '#E3F2FD', minHeight: '100vh' }}>
+    <div style={{ backgroundColor: '#F1F8E9', minHeight: '100vh' }}>
       <NavBar />
       <div className="container py-4">
         <Routes>
